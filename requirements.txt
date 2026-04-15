@@ -1,0 +1,19 @@
+# ──────────────────────────────────────────────────────────────────────
+# Philos — Round 1 dependencies (ingestion only)
+#
+# This file lists ONLY what the ingestion pipeline needs right now.
+# Each later round (embeddings, retrieval, generation, UI) will add its
+# own deps here so we can see the footprint grow one step at a time.
+# ──────────────────────────────────────────────────────────────────────
+
+# PDF → structured Markdown.
+# Why PyMuPDF4LLM specifically: it preserves headings, page markers, and
+# footnotes in its Markdown output. That structure becomes metadata later
+# (page numbers for citations, headings for chapter/section tags).
+pymupdf4llm>=0.0.17
+
+# LlamaIndex core — we only use SentenceSplitter in Round 1.
+# Why the -core package: it's the lightweight base without the dozens
+# of integration extras (OpenAI, Anthropic, Chroma, etc.) that we'll
+# pull in selectively in later rounds.
+llama-index-core>=0.11.0
