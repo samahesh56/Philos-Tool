@@ -1,0 +1,47 @@
+# ──────────────────────────────────────────────────────────────────────
+# Philos — .gitignore
+#
+# What this file does: tells git which files to *never* commit.
+# Why we care: copyrighted PDFs, generated artifacts, and secrets must
+# stay local. Only the code and project scaffolding go into version control.
+# ──────────────────────────────────────────────────────────────────────
+
+# --- Python bytecode & build artifacts ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+build/
+dist/
+
+# --- Virtual environments ---
+# We don't prescribe a venv name; ignore all common ones.
+.venv/
+venv/
+env/
+.python-version
+
+# --- Secrets ---
+# Never commit real API keys. .env.example (committed) shows the shape;
+# .env (ignored) holds the real values.
+.env
+.env.local
+
+# --- Data directories ---
+# Raw PDFs may be copyrighted and are always user-supplied.
+# Processed chunks/indexes are deterministic outputs — regenerate them.
+data/raw/*
+data/processed/*
+# ...but keep the directories themselves in the repo via .gitkeep files.
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# --- Future: vector store persistence (added in Round 2) ---
+chroma/
+*.chroma
+
+# --- Editor / OS cruft ---
+.DS_Store
+.idea/
+.vscode/
+*.swp
